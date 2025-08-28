@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miniamaker – Portfolio</title>
+  <meta name="description" content="Portfolio minimal et percutant pour créateur de miniatures YouTube (Miniamaker)"> 
+  <style>
+    :root{
+      --bg:#0b0c10;       /* Fond principal */
+      --card:#11131a;     /* Cartes */
+      --muted:#a2a8bd;    /* Texte secondaire */
+      --text:#eef2ff;     /* Texte principal */
+      --brand:#5b8cff;    /* Couleur d'accent */
+      --brand-2:#9a7aff;  /* Accent 2 */
+      --ring: 0 0 0 3px rgb(91 140 255 / .35);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-soft: 0 4px 16px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background: radial-gradient(1200px 600px at 85% -10%, rgba(154,122,255,.18), transparent 50%),
+                         radial-gradient(900px 500px at -10% 0%, rgba(91,140,255,.18), transparent 50%),
+                         var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1100px, 92%); margin-inline:auto}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter: blur(10px);
+      background: linear-gradient( to bottom, rgba(11,12,16,.75), rgba(11,12,16,.4) );
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .logo{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px
+    }
+    .logo-badge{
+      width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
+      background: conic-gradient(from 220deg, var(--brand), var(--brand-2));
+      box-shadow: var(--shadow-soft);
+      font-weight:900; color:#0b0c10
+    }
+    .cta{display:flex; gap:10px}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.02); color:var(--text); transition:.2s ease; font-weight:600}
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.25)}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); border:none; box-shadow: var(--shadow)}
+
+    /* Hero */
+    .hero{display:grid; gap:26px; padding:48px 0 26px}
+    .hero h1{font-size: clamp(28px, 5vw, 46px); line-height:1.08; margin:0}
+    .hero p{margin:0; color:var(--muted); font-size: clamp(14px, 2.4vw, 18px)}
+    .hero .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+    .badge{padding:6px 10px; border:1px solid rgba(255,255,255,.12); border-radius:999px; color:var(--muted); background: rgba(255,255,255,.02); font-size:13px}
+
+    /* Grid */
+    .section{margin: 22px 0 48px}
+    .section h2{font-size: clamp(22px,3.6vw,28px); margin: 0 0 12px}
+    .grid{display:grid; gap:16px; grid-template-columns: repeat(12, 1fr)}
+    .card{grid-column: span 12; background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow-soft)}
+
+    @media (min-width:700px){
+      .card.sm-6{grid-column: span 6}
+      .card.sm-4{grid-column: span 4}
+    }
+
+    .card .wrap{padding:16px}
+    .muted{color:var(--muted)}
+
+    /* Gallery items */
+    .thumb{aspect-ratio:16/9; background:#0f1320; border-bottom:1px solid rgba(255,255,255,.06); position:relative}
+    .thumb::before{content:""; position:absolute; inset:0; background: linear-gradient( to bottom, rgba(155,125,255,.12), transparent 30% );}
+    .thumb svg{width:100%; height:100%; display:block}
+
+    /* List */
+    .list{display:grid; gap:10px}
+    .list li{display:flex; align-items:center; gap:10px; background: rgba(255,255,255,.03); padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.08)}
+
+    /* Footer */
+    footer{padding:28px 0 60px; color:var(--muted)}
+    .credits{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+
+    /* Utility */
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo" aria-label="Miniamaker">
+        <div class="logo-badge" aria-hidden="true">M</div>
+        Miniamaker
+      </div>
+      <nav class="cta" aria-label="Navigation principale">
+        <a class="btn" href="#works">Portfolio</a>
+        <a class="btn primary" href="#contact">Me contacter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Je crée des miniatures YouTube qui <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">augmentent votre CTR</span>.</h1>
+      <p>Designer spécialisé en thumbnails : clairs, cohérents, et pensés pour la performance. Simples. Rapides. Efficaces.</p>
+      <div class="badges" role="list" aria-label="Points forts">
+        <div class="badge">Optimisation CTR</div>
+        <div class="badge">A/B testing</div>
+        <div class="badge">Respect de l'identité</div>
+        <div class="badge">Livraison express</div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" aria-labelledby="services">
+      <h2 id="services">Services</h2>
+      <div class="grid">
+        <article class="card sm-4">
+          <div class="thumb" aria-hidden="true">
+            <!-- Placeholder SVG -->
+            <svg viewBox="0 0 160 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#5b8cff"/>
+                  <stop offset="100%" stop-color="#9a7aff"/>
+                </linearGradient>
+              </defs>
+              <rect width="160" height="90" fill="#13182a"/>
+              <rect x="6" y="6" width="148" height="78" rx="8" fill="url(#g1)" opacity="0.25"/>
+              <g fill="#fff" opacity="0.9">
+                <circle cx="40" cy="45" r="12"/>
+                <rect x="65" y="35" width="60" height="20" rx="4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="wrap">
+            <h3>Miniatures YouTube</h3>
+            <p class="muted">Création sur mesure, lisible sur mobile, avec hiérarchie visuelle claire.</p>
+          </div>
+        </article>
+        <article class="card sm-4">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 160 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="160" height="90" fill="#13182a"/>
+              <g opacity="0.9">
+                <rect x="12" y="20" width="136" height="12" rx="6" fill="#5b8cff"/>
+                <rect x="12" y="40" width="100" height="12" rx="6" fill="#9a7aff"/>
+                <rect x="12" y="60" width="80" height="12" rx="6" fill="#5b8cff"/>
+              </g>
+            </svg>
+          </div>
+          <div class="wrap">
+            <h3>Optimisation CTR</h3>
+            <p class="muted">A/B testing, contraste, typographies impactantes, itérations guidées par données.</p>
+          </div>
+        </article>
+        <article class="card sm-4">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 160 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="160" height="90" fill="#13182a"/>
+              <g opacity="0.9">
+                <circle cx="40" cy="45" r="22" fill="#5b8cff"/>
+                <rect x="70" y="28" width="78" height="34" rx="8" fill="#9a7aff"/>
+              </g>
+            </svg>
+          </div>
+          <div class="wrap">
+            <h3>Identité & Cohérence</h3>
+            <p class="muted">Système visuel cohérent : couleurs, styles, gabarits réutilisables.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WORKS / PORTFOLIO -->
+    <section id="works" class="section" aria-labelledby="portfolio">
+      <h2 id="portfolio">Sélection de miniatures</h2>
+      <div class="grid">
+        <!-- 6 items exemple; dupliquez pour ajouter vos travaux -->
+        <figure class="card sm-6">
+          <div class="thumb" role="img" aria-label="Exemple de miniature : Compétences digitales 2025">
+            <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect width="160" height="90" fill="#12162a"/>
+              <text x="10" y="50" fill="#fff" font-size="14" font-weight="800">5 COMPÉTENCES 2025</text>
+              <circle cx="130" cy="45" r="20" fill="#5b8cff"/>
+            </svg>
+          </div>
+          <figcaption class="wrap">
+            <strong>Compétences digitales 2025</strong>
+            <p class="muted">Titre lisible, sujet clair, visage/objet à droite, grande typographie.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="card sm-6">
+          <div class="thumb" role="img" aria-label="Exemple de miniature : IA vs Humain">
+            <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect width="160" height="90" fill="#12162a"/>
+              <rect x="10" y="18" width="70" height="54" rx="8" fill="#5b8cff"/>
+              <rect x="80" y="18" width="70" height="54" rx="8" fill="#9a7aff"/>
+            </svg>
+          </div>
+          <figcaption class="wrap">
+            <strong>IA vs Humain</strong>
+            <p class="muted">Contraste de couleurs, split-screen, message immédiat.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="card sm-6">
+          <div class="thumb" role="img" aria-label="Exemple : Tutoriel express">
+            <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect width="160" height="90" fill="#12162a"/>
+              <polygon points="60,25 120,45 60,65" fill="#5b8cff"/>
+              <rect x="12" y="28" width="36" height="34" rx="6" fill="#fff" opacity=".9"/>
+            </svg>
+          </div>
+          <figcaption class="wrap">
+            <strong>Tutoriel express</strong>
+            <p class="muted">Icône claire + flèche de direction = compréhension instantanée.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="card sm-6">
+          <div class="thumb" role="img" aria-label="Exemple : Business digital">
+            <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect width="160" height="90" fill="#12162a"/>
+              <polyline points="12,70 40,50 70,62 100,35 148,42" fill="none" stroke="#5b8cff" stroke-width="4"/>
+            </svg>
+          </div>
+          <figcaption class="wrap">
+            <strong>Business digital</strong>
+            <p class="muted">Courbe de croissance, codes couleur business, promesse visuelle.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="card sm-6">
+          <div class="thumb" role="img" aria-label="Exemple : Erreurs à éviter">
+            <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect width="160" height="90" fill="#12162a"/>
+              <g fill="#ff5b5b">
+                <rect x="14" y="28" width="18" height="34" rx="4"/>
+                <rect x="40" y="28" width="18" height="34" rx="4"/>
+                <rect x="66" y="28" width="18" height="34" rx="4"/>
+              </g>
+            </svg>
+          </div>
+          <figcaption class="wrap">
+            <strong>7 erreurs à éviter</strong>
+            <p class="muted">Éléments répétés + couleur alerte = message fort.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="card sm-6">
+          <div class="thumb" role="img" aria-label="Exemple : Afrique & business">
+            <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect width="160" height="90" fill="#12162a"/>
+              <rect x="18" y="24" width="124" height="42" rx="10" fill="#9a7aff" opacity=".9"/>
+              <text x="28" y="51" fill="#fff" font-size="12" font-weight="800">0€ → 1000€/mois</text>
+            </svg>
+          </div>
+          <figcaption class="wrap">
+            <strong>Créer un business depuis l'Afrique</strong>
+            <p class="muted">Promesse claire, lisible sur mobile, contraste fort.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" aria-labelledby="about">
+      <h2 id="about">À propos</h2>
+      <div class="card">
+        <div class="wrap">
+          <p>Je transforme des idées en miniatures YouTube <strong>lisibles</strong>, <strong>mémorables</strong> et <strong>taillées pour le clic</strong>. J’utilise une méthodologie simple : recherche de l’angle fort, hiérarchie visuelle, contraste, et tests rapides pour améliorer la performance.</p>
+          <ul class="list" role="list">
+            <li>⏱️ Livraison rapide (24–48h en standard)</li>
+            <li>🧪 Variantes pour A/B testing si besoin</li>
+            <li>🎯 Respect strict de votre identité de marque</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="card">
+        <div class="wrap">
+          <p class="muted">Parlez-moi de votre vidéo (titre, audience, objectif), et je vous propose 2 axes créatifs.</p>
+          <form onsubmit="event.preventDefault(); alert('Merci ! Votre message a bien été simulé.');" aria-label="Formulaire de contact">
+            <div class="grid" style="gap:12px; grid-template-columns:repeat(12,1fr)">
+              <input aria-label="Votre nom" class="input" style="grid-column:span 6; padding:12px 14px; border-radius:12px; background:#0f1220; border:1px solid rgba(255,255,255,.12); color:var(--text)" placeholder="Votre nom" required>
+              <input aria-label="Email" class="input" style="grid-column:span 6; padding:12px 14px; border-radius:12px; background:#0f1220; border:1px solid rgba(255,255,255,.12); color:var(--text)" type="email" placeholder="Email" required>
+              <textarea aria-label="Message" class="input" style="grid-column:span 12; padding:12px 14px; border-radius:12px; background:#0f1220; border:1px solid rgba(255,255,255,.12); color:var(--text); min-height:120px" placeholder="Votre message"></textarea>
+              <div style="grid-column:span 12; display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+                <button class="btn primary" type="submit">Envoyer</button>
+                <a class="btn" href="mailto:you@example.com">you@example.com</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="credits">© <span id="y"></span> Miniamaker — Portfolio template. Conçu pour être simple, rapide et efficace.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
